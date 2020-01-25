@@ -3,6 +3,16 @@
   text-align: center;
 }
 
+.buttons{
+  display: flex;
+  justify-content: center;
+}
+
+.btn-start{
+  width: 50px;
+  text-align: center;
+}
+
 .container {
   display: flex;
 }
