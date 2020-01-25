@@ -1,3 +1,8 @@
+.title{
+  font-family: "Amatic SC";
+  text-align: center;
+}
+
 .container {
   display: flex;
 }
