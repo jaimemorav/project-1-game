@@ -1,5 +1,9 @@
-.title{
+.font{
   font-family: "Amatic SC";
+  text-transform: uppercase;
+}
+
+.title{
   text-align: center;
 }
 
@@ -9,15 +13,22 @@
 }
 
 .btn-start{
-  width: 50px;
+  width: 80px;
+  font-size: 20px;
+  font-weight: bold;
   text-align: center;
+  border: 2px solid #000;
+  background-color: #fff;
 }
 
 .container {
   display: flex;
 }
 
-canvas {
+.game-screen {
   border: 1px solid #000;
   margin: 0 auto;
+}
+.disabled {
+  display: none;
 }
