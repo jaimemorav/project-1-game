@@ -95,6 +95,6 @@ function Platform(){
 ## Links
 
 [Github](https://github.com/jaimemorav/project-1-game)
-[Slides](https://slides.com/jaimemora21/deck)
+[Slides](https://slides.com/jaimemora21/doodle-jump)
 [Trello](https://trello.com/b/Kul81z32/game)
 [Reference -> Doodle Jump](https://www.paisdelosjuegos.es/juego/salto+hacia+arriba/doodle+jump.html)
