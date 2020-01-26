@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
   
   const gameScreen = document.getElementById('gameScreen');
   ctx = gameScreen.getContext('2d');
-  const widthCell = 10;
+  const widthCell = 50;
+  const heightCell= 50;
+
 
   function start() {
     gameScreen.classList.remove("disabled");
@@ -12,6 +14,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
     startButton.classList.add("disabled");
   }
 
+  function printGameOver(){
+  }
+
   const startButton = document.getElementById('start');
   startButton.addEventListener('click', start);
-})
+
+  game = new Game({
+    ctx,
+    rows: gameScreen.width / widthCell,
+    columns: gameScreen.height / heightCell,
+    maxRows: widthCell,
+    maxColumns: heightCell,
+    player: new Player(gameScreen.width / widthCell, gameScreen.height / heightCell),
+  }, printGameOver);
+
+});

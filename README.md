@@ -8,7 +8,7 @@ The game is over when the Doodle jump and don't collition with a platform and fa
 
 Extra: 
 Appear some enemies, that the Doodle has to avoid.
-Add some power Ups to jump more.
+Add some power Ups to jump more o ascend.
 * * *
 ## MVP
 ### Technique
@@ -50,48 +50,59 @@ Html5 __Canvas__ and Vanilla __Javascript__
 ## Data structure
 __main.js__
 ````
-createStartScreen(id);
-createGameScreen(id);
-createGameOverScreen(id);
-destroyStartScreen();
-destroyGameScreen();
-destroyGameOverScreen();
+start(id);
+printGameOverScreen(id);
 var game = new Game({
     this.rows,
     this.columns,
     ctx: ctx,
-    backgroundcolor = ['xxx','xxx','xxx'],
-    this.platforms,
     this.player
+    this.platforms,
   });
 game.init();
 ````
 __Game.js__
 ````
-function Game(options){};
-Game.drawBoard();
-Game.drawPlayer();
+class Game{
+  constructor(options, callback) {
+    this.player = player;
+    this.plaforms;
+    this.rows = options.rows;
+    this.columns = options.columns;
+    this.interval = undefined;
+    this.maxCells = options.maxCells;
+    this.gameOver = callback;
+  }
+}
 Game.generatePlatforms();
+Game.drawPlayer();
+Game.drawBoard();
+Game.update();
+Game.clean();
+Game.assignControlToKeys();
 Game.gameOver();
 Game.init();
-garbageCollector;
 ````
 __Player.js__
 ````
-function Player(){
+Classs Player(){
   this.width;
   this.height;
 };
 Player.move();
+Player.collidesPlatform();
+Player.stop();
+Player.reset();
 Player.jump();
 ````
 __Platform.js__
 ````
-function Platform(){
+class Platform(){
   this.width;
   this.height;
 };
 ````
+
 ## Links
 
 [Github](https://github.com/jaimemorav/project-1-game)
