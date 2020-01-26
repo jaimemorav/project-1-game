@@ -24,6 +24,32 @@ class Game {
     ctx.clearRect(0, 0, gameScreen.width, gameScreen.height);
   }
 
+  _assignControlsToKeys() {
+    document.addEventListener('keydown', e => {
+      switch (e.keyCode) {
+        case 37: // arrow left
+          this.player._moveLeft();
+          break;
+        case 39: // arrow right
+          this.player._moveRight();
+          break;
+      }
+    });
+  }
+
+  _update(){
+    this._clean();
+    this._drawPlayer();
+    if (!!this.interval) {
+      this.interval = window.requestAnimationFrame(this._update.bind(this));
+    }
+  }
+
+
   start() {
+    this._assignControlsToKeys();
+    this._drawPlayer();
+    this.player._jump();
+    this.interval = window.requestAnimationFrame(this._update.bind(this));
   }
 }
