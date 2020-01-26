@@ -12,10 +12,10 @@ class Game {
   }
 
   _drawPlayer(){
-    let positionColumnPlayer = this.player.position.column * this.maxColumns;
-    let positionRowPlayer = this.player.position.row * this.maxRows;
-    let bodyColumnPlayer = this.player.body.column * this.columns;
-    let bodyRowPlayer = this.player.body.row * this.rows;
+    const positionColumnPlayer = this.player.position.column * this.maxColumns;
+    const positionRowPlayer = this.player.position.row * this.maxRows;
+    const bodyColumnPlayer = this.player.body.column * this.columns;
+    const bodyRowPlayer = this.player.body.row * this.rows;
 
     ctx.fillRect(positionColumnPlayer, positionRowPlayer, bodyColumnPlayer, bodyRowPlayer);
     ctx.fillStyle = "#FF0000";
