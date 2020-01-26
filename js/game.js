@@ -18,9 +18,11 @@ class Game {
     const bodyRowPlayer = this.player.body.row * this.rows;
 
     ctx.fillRect(positionColumnPlayer, positionRowPlayer, bodyColumnPlayer, bodyRowPlayer);
-    ctx.fillStyle = "#FF0000";
   }
 
+  _clean(){
+    ctx.clearRect(0, 0, gameScreen.width, gameScreen.height);
+  }
 
   start() {
   }
