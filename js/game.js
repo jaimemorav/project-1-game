@@ -2,22 +2,31 @@ class Game {
   constructor(options, callback) {
     this.ctx = options.ctx;
     this.player = options.player;
-    this.rows = options.rows;
-    this.columns = options.columns;
-    this.platforms =[];
+    this.platform = options.platform;
     this.interval = undefined;
-    this.maxRows = options.maxRows;
-    this.maxColumns = options.maxColumns;
     this.gameOver = callback;
   }
 
   _drawPlayer(){
-    const positionColumnPlayer = this.player.position.column * this.maxColumns;
-    const positionRowPlayer = this.player.position.row * this.maxRows;
-    const bodyColumnPlayer = this.player.body.column * this.columns;
-    const bodyRowPlayer = this.player.body.row * this.rows;
-
+    const positionColumnPlayer = this.player.position.column;
+    const positionRowPlayer = this.player.position.row;
+    const bodyColumnPlayer = this.player.body.column ;
+    const bodyRowPlayer = this.player.body.row;
+    this.ctx.fillStyle = "black";
     ctx.fillRect(positionColumnPlayer, positionRowPlayer, bodyColumnPlayer, bodyRowPlayer);
+  }
+
+  _generatePlatforms(){
+    for (let i = 0; i < this.platform.position.length; i++) {
+      this.platform.position[i].column = Math.random() * gameScreen.height ; //generate platforms randomly
+    }
+  }
+
+  _drawPlatforms(){
+    this.ctx.fillStyle = "green";
+    this.platform.position.forEach(position => {
+      this.ctx.fillRect(position.column, position.row, this.platform.body.column, this.platform.body.row)
+    });
   }
 
   _clean(){
@@ -38,18 +47,23 @@ class Game {
   }
 
   _update(){
-    this._clean();
-    this._drawPlayer();
+    this._clean(); // Clean all the Canvas
+    this._drawPlatforms(); //Draw the platforms
+    this._drawPlayer(); // Draw again the Player
+    this.platform._collidesWithPlayer();
     if (!!this.interval) {
-      this.interval = window.requestAnimationFrame(this._update.bind(this));
+      this.interval = window.requestAnimationFrame(this._update.bind(this));//Loop of _update() with a bind because this references to window
     }
   }
 
 
   start() {
     this._assignControlsToKeys();
+    this._generatePlatforms();
+    this._drawPlatforms(); //Draw the platforms
     this._drawPlayer();
     this.player._jump();
+
     this.interval = window.requestAnimationFrame(this._update.bind(this));
   }
 }

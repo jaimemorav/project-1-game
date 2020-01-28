@@ -4,16 +4,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
   
   const gameScreen = document.getElementById('gameScreen');
   ctx = gameScreen.getContext('2d');
-  const widthCell = 50;
-  const heightCell= 50;
+
 
   game = new Game({
-    ctx,
-    rows: gameScreen.width / widthCell,
-    columns: gameScreen.height / heightCell,
-    maxRows: widthCell,
-    maxColumns: heightCell,
-    player: new Player(gameScreen.width / widthCell, gameScreen.height / heightCell),
+    ctx: ctx,
+    player: new Player(gameScreen.width, gameScreen.height),
+    platform: new Platform(gameScreen.width, gameScreen.height),
   }, printGameOver);
 
   function start() {

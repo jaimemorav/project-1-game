@@ -1,11 +1,12 @@
 class Player {
   constructor(maxRows, maxColumns) {
-    this.body = {row: 3, column: 1};
-    this.position = {row: 8, column: 5};
+    this.body = {row: 20, column: 10};
+    this.position = {row: 400, column: 250};
     this.maxRows = maxRows;
     this.maxColumns = maxColumns;
     this.direction = 'left';
     this.intervalId = undefined;
+    this.falling = true;
   }
 
   _move() {
@@ -31,15 +32,38 @@ class Player {
 
   _jump() {
     let intervalId = setInterval(()=>{
-      this.position.row = this.position.row  - 3;
-      setTimeout(function () {
-        game.player.position.row = game.player.position.row + 3;
-      }, 450);
-    }, 1000)
+      if(this.position.row == 450 ){
+        this.falling = false;
+        this.position.row -= 1;
+      }
+      if(this.position.row < 450 && !this.falling){
+        console.log("sube")
+        this._goUp();
+      }
+      if (this.position.row == 300){
+        this.falling = true;
+        this.position.row += 1;
+      }
+      if (this.position.row > 300 && this.falling) {
+        console.log("baja")
+        this._goDown();
+      }
+    }, 5)
   }
 
+
+
   _goDown(){
-    this.position.row = this.position.row + 1;
+    this.falling = true;
+    this.position.row += 1;
+    console.log("baja")
+  }
+
+
+  _goUp(){
+    this.falling = false; 
+    this.position.row -= 1;
+    console.log("sube")
   }
 
 
