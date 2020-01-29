@@ -50,7 +50,6 @@ class Game {
     this._clean(); // Clean all the Canvas
     this._drawPlatforms(); //Draw the platforms
     this._drawPlayer(); // Draw again the Player
-    this.platform._collidesWithPlayer();
     if (!!this.interval) {
       this.interval = window.requestAnimationFrame(this._update.bind(this));//Loop of _update() with a bind because this references to window
     }
