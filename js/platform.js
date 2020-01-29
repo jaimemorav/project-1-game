@@ -1,5 +1,5 @@
 class Platform {
-  constructor(maxRows, maxColumns) {
+  constructor() {
     this.body = { row: 8, column: 40};
     this.position = [
       { row: 450, column: 8 },
@@ -14,8 +14,6 @@ class Platform {
       { row: 340, column: 8 },
       { row: 200, column: 8 },
     ];
-    this.maxRows = maxRows;
-    this.maxColumns = maxColumns;
   }
 
 
