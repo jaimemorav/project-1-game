@@ -1,8 +1,8 @@
 class Player {
-  constructor(maxRows, maxColumns) {
-    this.body = {row: 20, column: 10};
-    this.initialPosition = {row: 400, column: 250};
-    this.position = {row: 400, column: 250};
+  constructor() {
+    this.body = {width: 10, height: 20};
+    this.initialPosition = {row: 250, column: 400};
+    this.position = {row: 250, column: 400};
     this.direction = 'left';
     this.intervalId = undefined;
     this.falling = true;
@@ -14,10 +14,10 @@ class Player {
   _move() {
     switch (this.direction) {
       case 'right':
-        this.position.column = (this.position.column + 10) % 500;
+        this.position.row = (this.position.row + 10) % 500;
         break;
       case 'left':
-        this.position.column = ((this.position.column - 10  ) + 500) % 500;
+        this.position.row = ((this.position.row - 10 ) + 500) % 500;
         break;
     }
   }
@@ -35,51 +35,36 @@ class Player {
   _jump() {
     console.log("Jump?")
     this.invertalJump = setInterval(() => {
-      if (this.position.row === 400) {
+      if (this.position.column === 400) {
         this.falling = false;
-        this.position.row -= 1;
+        this.position.column -= 1;
       }
-      if (this.position.row < this.initialPosition.row && !this.falling) {
+      if (this.position.column < this.initialPosition.column && !this.falling) {
         this._goUp();
       }
-      if (this.position.row === (this.initialPosition.row - this.distanceJump)) {
+      if (this.position.column === (this.initialPosition.column - this.distanceJump)) {
         this.falling = true;
-        this.position.row += 1;
+        this.position.column += 1;
       }
-      if (this.position.row < this.initialPosition.row && this.falling) {
+      if (this.position.column < this.initialPosition.column && this.falling) {
         this._goDown();
       }
     }, 5)
   }
 
+  _falling(){
+
+  }
+
+
   _goDown(){
     this.falling = true;
-    this.position.row += 1;
+    this.position.column += 1;
   }
 
   _goUp(){
     this.falling = false; 
-    this.position.row -= 1;
+    this.position.column -= 1;
   }
-
-
-  _collidesWithPlatform(platforms){
-    for (let i = 0; i < platforms.position.length; i++) {
-      const element = platforms.position[i];
-      console.log(element)
-      if (
-        this.position.row < element.row + platforms.body.row &&
-        this.position.row + this.body.row > element.row &&
-        this.position.column < element.column + platforms.body.column && this.falling &&
-        element.column + platforms.body.column > element.column
-        ){
-          console.log("choca");
-        this.positionBeforeJump = this.position.row;
-      }
-    }
-  }
-
-
-
 
 }

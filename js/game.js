@@ -8,24 +8,20 @@ class Game {
   }
 
   _drawPlayer(){
-    const positionColumnPlayer = this.player.position.column;
-    const positionRowPlayer = this.player.position.row;
-    const bodyColumnPlayer = this.player.body.column ;
-    const bodyRowPlayer = this.player.body.row;
     this.ctx.fillStyle = "black";
-    ctx.fillRect(positionColumnPlayer, positionRowPlayer, bodyColumnPlayer, bodyRowPlayer);
+    ctx.fillRect(this.player.position.row, this.player.position.column, this.player.body.width, this.player.body.height);
   }
 
   _generatePlatforms(){
     for (let i = 0; i < this.platform.position.length; i++) {
-      this.platform.position[i].column = Math.random() * gameScreen.height ; //generate platforms randomly
+      this.platform.position[i].row = Math.round(Math.random() * gameScreen.height); //generate platforms randomly
     }
   }
 
   _drawPlatforms(){
     this.ctx.fillStyle = "green";
     this.platform.position.forEach(position => {
-      this.ctx.fillRect(position.column, position.row, this.platform.body.column, this.platform.body.row)
+      this.ctx.fillRect(position.row, position.column, this.platform.body.width, this.platform.body.height)
     });
   }
 
@@ -46,10 +42,27 @@ class Game {
     });
   }
 
+  _collidesPlayerWithPlatform() {
+    for (let i = 0; i < this.platform.position.length; i++) {
+      const element = this.platform.position[i];
+      if (
+        this.player.position.row < element.row + this.platform.body.width &&
+        this.player.position.row + this.player.body.width > element.row &&
+        this.player.position.column < element.column + this.platform.body.height &&
+        this.player.position.column + this.player.body.height > element.column &&
+        this.player.falling
+      ) {
+        console.log("choca");
+        this.positionBeforeJump = this.player.position.column;
+      }
+    }
+  }
+
   _update(){
     this._clean(); // Clean all the Canvas
     this._drawPlatforms(); //Draw the platforms
     this._drawPlayer(); // Draw again the Player
+    this._collidesPlayerWithPlatform();
     if (!!this.interval) {
       this.interval = window.requestAnimationFrame(this._update.bind(this));//Loop of _update() with a bind because this references to window
     }
