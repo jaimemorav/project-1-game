@@ -54,6 +54,7 @@ class Game {
       ) {
         console.log("choca");
         this.positionBeforeJump = this.player.position.column;
+        return true;
       }
     }
   }

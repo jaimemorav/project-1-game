@@ -6,13 +6,13 @@ class Platform {
       { row: 300, column: 375 },
       { row: 8, column: 203 },
       { row: 8, column: 100 },
-      { row: 8, column: 400 },
-      { row: 8, column: 410 },
+      { row: 8, column: 380 },
+      { row: 8, column: 340 },
       { row: 8, column: 300 },
-      { row: 8, column: 305 },
-      { row: 8, column: 400 },
-      { row: 8, column: 300 },
-      { row: 8, column: 250 },
+      { row: 8, column: 335 },
+      { row: 8, column: 390 },
+      { row: 8, column: 330 },
+      { row: 8, column: 340 },
     ];
   }
 
