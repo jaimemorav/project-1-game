@@ -60,7 +60,7 @@ class Game {
         this.player.falling
       ) {
         console.log("choca");
-        this.positionBeforeJump = this.player.position.column;
+        this.player.positionBeforeJump = this.player.position.column;
         return true;
       }
     }
