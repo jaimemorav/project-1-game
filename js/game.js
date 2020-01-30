@@ -5,6 +5,7 @@ class Game {
     this.platform = options.platform;
     this.interval = undefined;
     this.gameOver = callback;
+    this.keys = [];
   }
 
   _drawPlayer(){
@@ -42,8 +43,25 @@ class Game {
     });
   }
 
+  _controlKeys(){
+    window.addEventListener('keydown', function (e) {
+      this.keys[e.keyCode] = true;
+    }.bind(this));
+
+    window.addEventListener('keyup', function (e) {
+    this.keys[e.keyCode] = false;
+    }.bind(this));
+  
+    if (this.keys[37]) {
+      this.player._moveLeft();
+    }
+    if (this.keys[39]) {
+      this.player._moveRight();
+    }
+  }
+
   _gameOver(){
-    if(this.player.position.column === 500){
+    if(this.player.position.column > 501){
       clearInterval(this.interval);
       alert("Game over");
     }
@@ -59,7 +77,6 @@ class Game {
         this.player.position.column + this.player.body.height > element.column &&
         this.player.falling
       ) {
-        console.log("choca");
         this.player.positionBeforeJump = this.player.position.column;
         return true;
       }
@@ -72,6 +89,7 @@ class Game {
     this._drawPlayer(); // Draw again the Player
     this._collidesPlayerWithPlatform(); //Checks if player collides with any platform
     this._gameOver();
+    this._controlKeys();
     if (!!this.interval) {
       this.interval = window.requestAnimationFrame(this._update.bind(this));//Loop of _update() with a bind because this references to window
     }
@@ -84,6 +102,7 @@ class Game {
     this._drawPlatforms(); //Draw the platforms
     this._drawPlayer();
     this.player._jump();
+    this._controlKeys();
 
     this.interval = window.requestAnimationFrame(this._update.bind(this));
   }

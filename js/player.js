@@ -4,7 +4,6 @@ class Player {
     this.initialPosition = {row: 250, column: 250};
     this.position = {row: 250, column: 250};
     this.direction = 'left';
-    this.intervalId = undefined;
     this.falling = true;
     this.speed = 1;
     this.realSpeed = 0; 
@@ -16,10 +15,10 @@ class Player {
   _move() {
     switch (this.direction) {
       case 'right':
-        this.position.row = (this.position.row + 20) % 500;
+        this.position.row = (this.position.row + 1) % 500;
         break;
       case 'left':
-        this.position.row = ((this.position.row - 20 ) + 500) % 500;
+        this.position.row = ((this.position.row - 1) + 500) % 500;
         break;
     }
   }
@@ -35,7 +34,6 @@ class Player {
   }
 
   _jump() {
-    console.log("Jump?")
     this.invertalJump = setInterval(() => {
       if (game._collidesPlayerWithPlatform()) {
         this.falling = false;
