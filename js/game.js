@@ -42,6 +42,13 @@ class Game {
     });
   }
 
+  _gameOver(){
+    if(this.player.position.column === 500){
+      clearInterval(this.interval);
+      alert("Game over");
+    }
+  }
+
   _collidesPlayerWithPlatform() {
     for (let i = 0; i < this.platform.position.length; i++) {
       const element = this.platform.position[i];
@@ -63,7 +70,8 @@ class Game {
     this._clean(); // Clean all the Canvas
     this._drawPlatforms(); //Draw the platforms
     this._drawPlayer(); // Draw again the Player
-    this._collidesPlayerWithPlatform();
+    this._collidesPlayerWithPlatform(); //Checks if player collides with any platform
+    this._gameOver();
     if (!!this.interval) {
       this.interval = window.requestAnimationFrame(this._update.bind(this));//Loop of _update() with a bind because this references to window
     }

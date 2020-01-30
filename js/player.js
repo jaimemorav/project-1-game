@@ -1,8 +1,8 @@
 class Player {
   constructor() {
     this.body = {width: 10, height: 20};
-    this.initialPosition = {row: 250, column: 100};
-    this.position = {row: 250, column: 400};
+    this.initialPosition = {row: 250, column: 250};
+    this.position = {row: 250, column: 250};
     this.direction = 'left';
     this.intervalId = undefined;
     this.falling = true;
@@ -16,10 +16,10 @@ class Player {
   _move() {
     switch (this.direction) {
       case 'right':
-        this.position.row = (this.position.row + 10) % 500;
+        this.position.row = (this.position.row + 20) % 500;
         break;
       case 'left':
-        this.position.row = ((this.position.row - 10 ) + 500) % 500;
+        this.position.row = ((this.position.row - 20 ) + 500) % 500;
         break;
     }
   }
@@ -51,12 +51,7 @@ class Player {
       if (this.falling) {
         this._goDown();
       }
-    
     }, 5)
-  }
-
-  _falling(){
-
   }
 
 
