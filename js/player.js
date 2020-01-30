@@ -2,7 +2,7 @@ class Player {
   constructor() {
     this.body = {width: 10, height: 20};
     this.initialPosition = {row: 250, column: 100};
-    this.position = {row: 250, column: 100};
+    this.position = {row: 250, column: 400};
     this.direction = 'left';
     this.intervalId = undefined;
     this.falling = true;
@@ -48,13 +48,10 @@ class Player {
         this.falling = true;
         this.position.column += this.speed;
       }
-      if (this.position.column < this.initialPosition.column && this.falling) {
+      if (this.falling) {
         this._goDown();
       }
-      else {
-        this.falling = true;
-        this.position.column += this.speed;
-      }
+    
     }, 5)
   }
 
