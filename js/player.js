@@ -7,7 +7,7 @@ class Player {
     this.falling = true;
     this.speed = 1;
     this.realSpeed = 0; 
-    this.distanceJump = 150;
+    this.distanceJump = 100;
     this.positionBeforeJump = 400;
     this.invertalJump = undefined;
   }
@@ -15,10 +15,10 @@ class Player {
   _move() {
     switch (this.direction) {
       case 'right':
-        this.position.row = (this.position.row + 1) % 500;
+        this.position.row = (this.position.row + 1.5) % 500;
         break;
       case 'left':
-        this.position.row = ((this.position.row - 1) + 500) % 500;
+        this.position.row = ((this.position.row - 1.5) + 500) % 500;
         break;
     }
   }

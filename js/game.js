@@ -84,14 +84,34 @@ class Game {
   }
 
   _moveMap(){
-    if(this._collidesPlayerWithPlatform && this.player.position.column < 150){
+    if (this._collidesPlayerWithPlatform && this.player.position.column < 150 && this.player.falling) {
       console.log("Bajar mapa");
-      this.platform.position.forEach(element => element.column += 20 );
-      this.player.position.column +=20;
-      this.player.falling = true;
+      this.platform.position.forEach(element => element.column += 0.5);
+      this.player.position.column += 0.5;
+      this._erasePlatforms();
+    }
+    if(this._collidesPlayerWithPlatform && this.player.position.column < 250 && this.player.falling){
+      console.log("Bajar mapa");
+      this.platform.position.forEach(element => element.column += 0.5 );
+      this.player.position.column += 0.5;
+      this._erasePlatforms();
+    }
+    if (this._collidesPlayerWithPlatform && this.player.position.column < 350 && this.player.falling) {
+      console.log("Bajar mapa");
+      this.platform.position.forEach(element => element.column += 0.5);
+      this.player.position.column += 0.5;
+      this._erasePlatforms();
     }
   }
 
+  _erasePlatforms(){
+    for (let i = 0; i < this.platform.position.length; i++) {
+      const element = this.platform.position[i];
+      if (element.column > 501){
+        this.platform.position.splice(i, 1, {row: Math.round(Math.random() * gameScreen.height), column: 0});
+      }
+    }
+  }
 
   _update(){
     this._clean(); // Clean all the Canvas
@@ -100,6 +120,7 @@ class Game {
     this._collidesPlayerWithPlatform(); //Checks if player collides with any platform
     this._gameOver();
     this._moveMap();
+    this._erasePlatforms();
     this._controlKeys();
     if (!!this.interval) {
       this.interval = window.requestAnimationFrame(this._update.bind(this));//Loop of _update() with a bind because this references to window
