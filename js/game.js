@@ -83,12 +83,23 @@ class Game {
     }
   }
 
+  _moveMap(){
+    if(this._collidesPlayerWithPlatform && this.player.position.column < 150){
+      console.log("Bajar mapa");
+      this.platform.position.forEach(element => element.column += 20 );
+      this.player.position.column +=20;
+      this.player.falling = true;
+    }
+  }
+
+
   _update(){
     this._clean(); // Clean all the Canvas
     this._drawPlatforms(); //Draw the platforms
     this._drawPlayer(); // Draw again the Player
     this._collidesPlayerWithPlatform(); //Checks if player collides with any platform
     this._gameOver();
+    this._moveMap();
     this._controlKeys();
     if (!!this.interval) {
       this.interval = window.requestAnimationFrame(this._update.bind(this));//Loop of _update() with a bind because this references to window
