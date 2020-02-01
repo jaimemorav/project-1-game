@@ -46,6 +46,9 @@ class Game {
         case 80: // letter p
           this._stop();
           break;
+        case 82: // letter r
+          this._restart();
+          break;
       }
     });
   }
@@ -123,8 +126,17 @@ class Game {
     stop += 1;
       if(stop %2 !== 0){
         window.cancelAnimationFrame(this.interval);
+        let pauseText = document.getElementById('pauseTitle');
+        pauseText.classList.remove("disabled");
     }
   }
+
+  _restart(){
+    let pauseText = document.getElementById('pauseTitle');
+    pauseText.classList.add("disabled");
+    this.interval = window.requestAnimationFrame(this._update.bind(this));
+  }
+  
 
 
 

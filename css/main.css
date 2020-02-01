@@ -38,7 +38,7 @@ body {
   display: none;
 }
 
-.game-over {
+.section-absolute {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,11 +49,8 @@ body {
   height: 150px;  
 }
 
-.game-over-background {
-  /* background-color: #fff; */
-}
 
-.game-over-title{
+.section-title{
   font-size: 34px;
 }
 
