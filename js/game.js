@@ -11,7 +11,7 @@ class Game {
   
   _drawPlayer(){
     this.player.playerImage = new Image();
-    this.player.playerImage.src = '/images/perry.png';
+    this.player.playerImage.src = './images/perry.png';
     ctx.drawImage(this.player.playerImage, this.player.position.row, this.player.position.column, this.player.body.width, this.player.body.height);
   }
   
@@ -23,7 +23,7 @@ class Game {
   
   _drawPlatforms(){
     this.platform.platformImage = new Image();
-    this.platform.platformImage.src = '/images/platform.png';
+    this.platform.platformImage.src = './images/platform.png';
     this.platform.position.forEach(position => {
       this.ctx.drawImage(this.platform.platformImage, position.row, position.column, this.platform.body.width, this.platform.body.height)
     });
