@@ -10,17 +10,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
     ctx: ctx,
     player: new Player(gameScreen.width, gameScreen.height),
     platform: new Platform(gameScreen.width, gameScreen.height),
-  }, printGameOver);
+  }, this._printGameOver);
 
   function start() {
     gameScreen.classList.remove("disabled");
     game.start();
     const startButton = document.getElementById('start');
-    startButton.classList.add("disabled");
-  }
-
-  function printGameOver(){
-    // gameOver.classList.remove("disabled");
+    startButton.classList.add('disabled');
+    const scoreSection = document.getElementById('score');
+    scoreSection.classList.remove('disabled');
   }
 
   const startButton = document.getElementById('start');

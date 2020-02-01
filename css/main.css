@@ -40,14 +40,27 @@
   justify-content: center;
   position: absolute;
   top: 30%;
-  left: 40%;  
+  left: 37%;
+  width: 350px;
+  height: 150px;  
+}
+
+.game-over-background {
+  background-color: #fff;
 }
 
 .game-over-title{
   font-size: 34px;
 }
 
-.game-over-subtext {
+.game-over-text {
   font-size: 20px;
-  margin: 0 auto; 
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: 15px; 
+}
+
+.score-text {
+  margin-left: 65%;
+  font-size: 25px;
 }

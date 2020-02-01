@@ -1,6 +1,6 @@
 class Player {
   constructor() {
-    this.body = {width: 10, height: 20};
+    this.body = {width: 40, height: 40};
     this.initialPosition = {row: 250, column: 250};
     this.position = {row: 250, column: 250};
     this.direction = 'left';
@@ -10,6 +10,7 @@ class Player {
     this.distanceJump = 100;
     this.positionBeforeJump = 400;
     this.invertalJump = undefined;
+    this.playerImage = undefined;
   }
 
   _move() {
@@ -40,6 +41,7 @@ class Player {
         this.position.column -= this.speed;
       }
       if (this.position.column < this.positionBeforeJump && !this.falling) {
+        this.falling = false;
         this._goUp();
       }
       if (this.position.column === (this.positionBeforeJump - this.distanceJump)) {

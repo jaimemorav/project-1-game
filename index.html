@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Doodle Jump</title>
-  <link href='https://fonts.googleapis.com/css?family=Amatic SC' rel='stylesheet'>
+  <title>Doodle Penguin Jump</title>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Amatic SC'>
   <link rel="stylesheet" href="./css/main.css">
 </head>
 
@@ -13,14 +13,21 @@
   <header>
     <h1 class="title font">Doodle Penguin Jump</h1>
   </header>
+  <section id="score" class="score disabled">
+    <div>
+      <p class= "score-text font">Score <span id="realScore"></span> </p>
+    </div>
+  </section>
   <section>
     <div class="buttons">
       <button id="start" class="btn-start font">Start</button>
     </div>
   </section>
   <section id="gameOver" class="game-over disabled">
-    <h2 id="gameOverTitle"class="title font game-over-title disabled"> GAME OVER</h2>
-    <span id="gameOverText" class="font game-over-subtext disabled"> Perry the penguin can't fly</span>
+    <div class="game-over-background">
+      <h2 id="gameOverTitle"class="title font game-over-title disabled"> GAME OVER</h2>
+      <p id="gameOverText" class="font game-over-text disabled"> Perry doesn't achieve his goal of flying</p>
+    </div>
   </section>
   <div class="container">
     <canvas id="gameScreen" class="game-screen disabled" width="500" height="500"></canvas>
