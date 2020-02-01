@@ -105,19 +105,20 @@ class Game {
   _moveMap(){
     if (this._collidesPlayerWithPlatform && this.player.position.column < 200 && this.player.falling) {
       this.platform.position.forEach(element => element.column += 1);
-      this.player.position.column += 0.5;
-      this._erasePlatforms();
+      this.player.position.column += 1;
     }
-    if(this._collidesPlayerWithPlatform && this.player.position.column < 300 && this.player.falling){
-      this.platform.position.forEach(element => element.column += 1 );
-      this.player.position.column += 0.5;
-      this._erasePlatforms();
-    }
-    if (this._collidesPlayerWithPlatform && this.player.position.column < 400 && this.player.falling) {
-      this.platform.position.forEach(element => element.column += 0.5);
-      this.player.position.column += 0.5;
-      this._erasePlatforms();
-    }
+    // if(this._collidesPlayerWithPlatform && this.player.position.column < 300 && this.player.falling){
+    //   this.platform.position.forEach(element => element.column += 1 );
+    //   this.player.position.column += 0.5;
+    //   this._erasePlatforms();
+    // }
+    // if (this._collidesPlayerWithPlatform && this.player.position.column < 400 && this.player.falling) {
+    //   this.platform.position.forEach(element => element.column += 0.5);
+    //   this.player.position.column += 0.5;
+    //   this._erasePlatforms();
+    // }
+      this.platform.position.forEach(element => element.column += 1);
+      this.player.position.column += 1;
   }
 
   _erasePlatforms(){
@@ -129,6 +130,9 @@ class Game {
     }
   }
 
+  _stop(){
+
+  }
 
   _update(){
     this._clean(); // Clean all the Canvas

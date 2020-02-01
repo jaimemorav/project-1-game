@@ -7,7 +7,7 @@ class Player {
     this.falling = true;
     this.speed = 1;
     this.realSpeed = 0; 
-    this.distanceJump = 100;
+    this.distanceJump = 70;
     this.positionBeforeJump = 400;
     this.invertalJump = undefined;
     this.playerImage = undefined;
