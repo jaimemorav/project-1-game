@@ -43,6 +43,9 @@ class Game {
         case 39: // arrow right
           this.player._moveRight();
           break;
+        case 80: // letter p
+          this._stop();
+          break;
       }
     });
   }
@@ -102,16 +105,6 @@ class Game {
       this.platform.position.forEach(element => element.column += 1);
       this.player.position.column += 1;
     }
-    // if(this._collidesPlayerWithPlatform && this.player.position.column < 300 && this.player.falling){
-    //   this.platform.position.forEach(element => element.column += 1 );
-    //   this.player.position.column += 0.5;
-    //   this._erasePlatforms();
-    // }
-    // if (this._collidesPlayerWithPlatform && this.player.position.column < 400 && this.player.falling) {
-    //   this.platform.position.forEach(element => element.column += 0.5);
-    //   this.player.position.column += 0.5;
-    //   this._erasePlatforms();
-    // }
       this.platform.position.forEach(element => element.column += 1);
       this.player.position.column += 1;
   }
@@ -126,8 +119,14 @@ class Game {
   }
 
   _stop(){
-
+    let stop = 0;
+    stop += 1;
+      if(stop %2 !== 0){
+        window.cancelAnimationFrame(this.interval);
+    }
   }
+
+
 
   _update(){
     this._clean(); // Clean all the Canvas
