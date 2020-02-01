@@ -10,28 +10,23 @@ class Game {
   }
   
   _drawPlayer(){
-    this.player.playerImage = new Image();
-    this.player.playerImage.src = './images/perry.png';
     ctx.drawImage(this.player.playerImage, this.player.position.row, this.player.position.column, this.player.body.width, this.player.body.height);
   }
   
   _generatePlatforms(){
-    for (let i = 0; i < this.platform.position.length; i++) {
-      this.platform.position[i].row = Math.round(Math.random() * gameScreen.height); //generate platforms randomly
+      for (let i = 0; i < this.platform.position.length; i++) {
+        this.platform.position[i].row = Math.round(Math.random() * gameScreen.height); //generate platforms randomly
     }
   }
   
   _drawPlatforms(){
-    this.platform.platformImage = new Image();
-    this.platform.platformImage.src = './images/platform.png';
-    this.platform.position.forEach(position => {
+      this.platform.position.forEach(position => {
       this.ctx.drawImage(this.platform.platformImage, position.row, position.column, this.platform.body.width, this.platform.body.height)
     });
   }
   
     _printScore(){
       let score = document.getElementById('realScore');
-      console.log("Works Real Score" + this.score);
       score.innerHTML = this.score;
     }
   

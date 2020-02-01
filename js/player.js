@@ -10,7 +10,8 @@ class Player {
     this.distanceJump = 70;
     this.positionBeforeJump = 400;
     this.invertalJump = undefined;
-    this.playerImage = undefined;
+  this.playerImage = new Image();
+  this.playerImage.src = './images/perry.png'; 
   }
 
   _move() {

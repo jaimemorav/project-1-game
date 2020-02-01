@@ -1,3 +1,8 @@
+body {
+  background-color: #fff;
+}
+
+
 .font{
   font-family: "Amatic SC";
   text-transform: uppercase;
@@ -19,7 +24,6 @@
   font-weight: bold;
   text-align: center;
   border: 2px solid #000;
-  background-color: #fff;
 }
 
 .container {
@@ -27,7 +31,7 @@
 }
 
 .game-screen {
-  /* border: 1px solid #000; */
+  border: 1px dotted #000;
   margin: 0 auto;
 }
 .disabled {
@@ -46,7 +50,7 @@
 }
 
 .game-over-background {
-  background-color: #fff;
+  /* background-color: #fff; */
 }
 
 .game-over-title{

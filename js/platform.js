@@ -22,7 +22,8 @@ class Platform {
       { row: 8, column: 50 },
       { row: 8, column: 100 },
     ];
-    this.platformImage = undefined;
+    this.platformImage = new Image();
+    this.platformImage.src = './images/platform.png';
   }
 
 
