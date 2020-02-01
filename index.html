@@ -6,17 +6,21 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Doodle Jump</title>
   <link href='https://fonts.googleapis.com/css?family=Amatic SC' rel='stylesheet'>
-  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
   <header>
-    <h1 class="title font">Doodle Jump</h1>
+    <h1 class="title font">Doodle Penguin Jump</h1>
   </header>
   <section>
     <div class="buttons">
       <button id="start" class="btn-start font">Start</button>
     </div>
+  </section>
+  <section id="gameOver" class="game-over disabled">
+    <h2 id="gameOverTitle"class="title font game-over-title disabled"> GAME OVER</h2>
+    <span id="gameOverText" class="font game-over-subtext disabled"> Perry the penguin can't fly</span>
   </section>
   <div class="container">
     <canvas id="gameScreen" class="game-screen disabled" width="500" height="500"></canvas>

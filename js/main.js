@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 
   function printGameOver(){
+    // gameOver.classList.remove("disabled");
   }
 
   const startButton = document.getElementById('start');

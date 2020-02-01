@@ -1,6 +1,7 @@
 .font{
   font-family: "Amatic SC";
   text-transform: uppercase;
+  font-weight: bold;
 }
 
 .title{
@@ -31,4 +32,22 @@
 }
 .disabled {
   display: none;
+}
+
+.game-over {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 30%;
+  left: 40%;  
+}
+
+.game-over-title{
+  font-size: 34px;
+}
+
+.game-over-subtext {
+  font-size: 20px;
+  margin: 0 auto; 
 }

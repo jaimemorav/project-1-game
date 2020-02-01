@@ -49,7 +49,7 @@ class Player {
       if (this.falling) {
         this._goDown();
       }
-    }, 5)
+    }, 6)
   }
 
 

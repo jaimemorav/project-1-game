@@ -51,7 +51,7 @@ class Game {
     window.addEventListener('keyup', function (e) {
     this.keys[e.keyCode] = false;
     }.bind(this));
-  
+    
     if (this.keys[37]) {
       this.player._moveLeft();
     }
@@ -63,8 +63,17 @@ class Game {
   _gameOver(){
     if(this.player.position.column > 501){
       clearInterval(this.interval);
-      alert("Game over");
+      this._printGameOver();
     }
+  }
+
+  _printGameOver() {
+    const gameOver = document.getElementById('gameOver');
+    gameOver.classList.remove("disabled");
+    const gameOverTitle = document.getElementById('gameOverTitle');
+    gameOverTitle.classList.remove("disabled");
+    const gameOverText = document.getElementById('gameOverText');
+    gameOverText.classList.remove("disabled");
   }
 
   _collidesPlayerWithPlatform() {
@@ -85,19 +94,16 @@ class Game {
 
   _moveMap(){
     if (this._collidesPlayerWithPlatform && this.player.position.column < 150 && this.player.falling) {
-      console.log("Bajar mapa");
       this.platform.position.forEach(element => element.column += 0.5);
       this.player.position.column += 0.5;
       this._erasePlatforms();
     }
     if(this._collidesPlayerWithPlatform && this.player.position.column < 250 && this.player.falling){
-      console.log("Bajar mapa");
       this.platform.position.forEach(element => element.column += 0.5 );
       this.player.position.column += 0.5;
       this._erasePlatforms();
     }
     if (this._collidesPlayerWithPlatform && this.player.position.column < 350 && this.player.falling) {
-      console.log("Bajar mapa");
       this.platform.position.forEach(element => element.column += 0.5);
       this.player.position.column += 0.5;
       this._erasePlatforms();
@@ -112,6 +118,7 @@ class Game {
       }
     }
   }
+
 
   _update(){
     this._clean(); // Clean all the Canvas
