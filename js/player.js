@@ -10,8 +10,8 @@ class Player {
     this.distanceJump = 70;
     this.positionBeforeJump = 400;
     this.invertalJump = undefined;
-  this.playerImage = new Image();
-  this.playerImage.src = './images/perry.png'; 
+    this.playerImage = new Image();
+    this.playerImage.src = './images/perry.png'; 
   }
 
   _move() {
@@ -41,11 +41,10 @@ class Player {
         this.falling = false;
         this.position.column -= this.speed;
       }
-      if (this.position.column < this.positionBeforeJump && !this.falling) {
-        this.falling = false;
+      if (!this.falling) {
         this._goUp();
       }
-      if (this.position.column === (this.positionBeforeJump - this.distanceJump)) {
+      if (this.position.column <= (this.positionBeforeJump - this.distanceJump) && !this.falling) {
         this.falling = true;
         this.position.column += this.speed;
       }
@@ -64,6 +63,15 @@ class Player {
   _goUp(){
     this.falling = false; 
     this.position.column -= this.speed;
+  }
+
+  _topFallDown(){
+    if(this.position.column < 5){
+      setTimeout(() => {
+        this.falling = true;
+      }, 500);
+    }
+
   }
 
 }

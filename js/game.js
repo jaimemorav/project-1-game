@@ -98,6 +98,7 @@ class Game {
       ) {
         this.player.positionBeforeJump = this.player.position.column;
         this.score += 10;
+        this.player.falling = true;
         return true;
       }
     }
@@ -108,8 +109,8 @@ class Game {
       this.platform.position.forEach(element => element.column += 1);
       this.player.position.column += 1;
     }
-      this.platform.position.forEach(element => element.column += 1);
-      this.player.position.column += 1;
+      this.platform.position.forEach(element => element.column += 0.5);
+      this.player.position.column += 0.5;
   }
 
   _erasePlatforms(){
@@ -136,20 +137,26 @@ class Game {
     pauseText.classList.add("disabled");
     this.interval = window.requestAnimationFrame(this._update.bind(this));
   }
-  
+
+  _drawBackground(){
+    let intervalBackground = setInterval(() => {
+      
+    }, 100);
+  }
 
 
 
   _update(){
     this._clean(); // Clean all the Canvas
+    this._collidesPlayerWithPlatform(); //Checks if player collides with any platform
     this._drawPlatforms(); //Draw the platforms
     this._drawPlayer(); // Draw again the Player
-    this._collidesPlayerWithPlatform(); //Checks if player collides with any platform
     this._gameOver();
     this._moveMap();
     this._erasePlatforms();
     this._controlKeys();
     this._printScore();
+    this.player._topFallDown();
     if (!!this.interval) {
       this.interval = window.requestAnimationFrame(this._update.bind(this));//Loop of _update() with a bind because this references to window
     }
