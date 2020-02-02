@@ -156,7 +156,6 @@ class Game {
     this._erasePlatforms();
     this._controlKeys();
     this._printScore();
-    this.player._topFallDown();
     if (!!this.interval) {
       this.interval = window.requestAnimationFrame(this._update.bind(this));//Loop of _update() with a bind because this references to window
     }
