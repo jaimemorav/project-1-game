@@ -7,6 +7,9 @@ class Game {
     this.gameOver = callback;
     this.keys = [];
     this.score = 0;
+    this.background = new Image();
+    this.background.src = './images/background.png';
+    this.stop = false;
   }
   
   _drawPlayer(){
@@ -45,9 +48,6 @@ class Game {
           break;
         case 80: // letter p
           this._stop();
-          break;
-        case 82: // letter r
-          this._restart();
           break;
       }
     });
@@ -123,31 +123,33 @@ class Game {
   }
 
   _stop(){
-    let stop = 0;
-    stop += 1;
-      if(stop %2 !== 0){
-        window.cancelAnimationFrame(this.interval);
-        let pauseText = document.getElementById('pauseTitle');
-        pauseText.classList.remove("disabled");
+    if(!this.stop){
+      window.cancelAnimationFrame(this.interval);
+      let pauseText = document.getElementById('pauseTitle');
+      pauseText.classList.remove("disabled");
+      this.stop = true;
+    } else{
+      let pauseText = document.getElementById('pauseTitle');
+      pauseText.classList.add("disabled");
+      this.interval = window.requestAnimationFrame(this._update.bind(this));
+      this.stop = false;
     }
-  }
-
-  _restart(){
-    let pauseText = document.getElementById('pauseTitle');
-    pauseText.classList.add("disabled");
-    this.interval = window.requestAnimationFrame(this._update.bind(this));
+    return stop;
   }
 
   _drawBackground(){
-    let intervalBackground = setInterval(() => {
-      
-    }, 100);
+    // let posY = 0;
+    // setInterval(() => {
+    //   ctx.drawImage(this.background, 0, posY )
+    //   posY += 1;
+    // }, 300);
   }
 
 
 
   _update(){
     this._clean(); // Clean all the Canvas
+    // this._drawBackground();
     this._collidesPlayerWithPlatform(); //Checks if player collides with any platform
     this._drawPlatforms(); //Draw the platforms
     this._drawPlayer(); // Draw again the Player

@@ -33,6 +33,10 @@ body {
 .game-screen {
   border: 1px dotted #000;
   margin: 0 auto;
+  /* background-image: url('../images/background.png');
+  background-size: 500px 1000px,
+  cover;
+  background-repeat: no-repeat; */
 }
 .disabled {
   display: none;
