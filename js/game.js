@@ -12,6 +12,9 @@ class Game {
     this.stop = false;
     this.backgroundInterval = undefined;
     this.posY = 0;
+    this.musicGameOver = new Audio();
+    this.musicGameOver.src = './music/game-over.wav';
+    this.playGameOver = 0;
   }
   
     _drawBackground(){
@@ -20,13 +23,10 @@ class Game {
     }
 
     _moveBackground(){
-      console.log(this.posY);
-      if(this.posY < -500){
+      if(this.posY < -gameScreen.height){
         this.posY = 0;
       } else {
-        setInterval(() => {
-          this.posY -=0.05
-        }, 1000);
+        this.posY -= 0.5;
       }
     }
 
@@ -95,9 +95,14 @@ class Game {
   }
 
   _gameOver(){
-    if(this.player.position.column > 501){
+    if(this.player.position.column > (gameScreen.height + 1)){
       clearInterval(this.interval);
       this._printGameOver();
+      this.playGameOver += 1;
+      
+    }
+    if(this.playGameOver === 1){
+      this.musicGameOver.play();
     }
   }
 
