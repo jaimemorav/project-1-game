@@ -11,7 +11,15 @@ class Player {
     this.positionBeforeJump = 400;
     this.invertalJump = undefined;
     this.playerImage = new Image();
-    this.playerImage.src = './images/perry.png'; 
+    this.playerImage.src = './images/perry.png';
+    this.spriteWidth = 86;
+    this.spriteHeight = 40;
+    this.spriteColumn = 2;
+    this.widthFrame = this.spriteWidth / this.spriteHeight;
+    this.currentFrame = 0;
+    this.frameCount = 2;
+    this.soundBounce = new Audio();
+    this.soundBounce.src = './music/bounce.wav';
   }
 
   _move() {
