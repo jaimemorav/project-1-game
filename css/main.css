@@ -1,5 +1,8 @@
 body {
-  background-color: #fff;
+  background-image: url('../images/background-html.png');
+  background-size: 2000px 2000px,
+  cover;
+  background-repeat: no-repeat;
 }
 
 
@@ -11,6 +14,7 @@ body {
 
 .title{
   text-align: center;
+  font-size: 40px;
 }
 
 .buttons{
@@ -18,7 +22,7 @@ body {
   justify-content: center;
 }
 
-.btn-start{
+.btn{
   width: 80px;
   font-size: 20px;
   font-weight: bold;
@@ -31,12 +35,7 @@ body {
 }
 
 .game-screen {
-  border: 1px dotted #000;
   margin: 0 auto;
-  /* background-image: url('../images/background.png');
-  background-size: 500px 1000px,
-  cover;
-  background-repeat: no-repeat; */
 }
 .disabled {
   display: none;
@@ -66,6 +65,10 @@ body {
 }
 
 .score-text {
-  margin-left: 65%;
+  margin-left: 60%;
   font-size: 25px;
+}
+
+.restart {
+  margin-left: 38%;
 }

@@ -21,9 +21,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
     scoreSection.classList.remove('disabled');
   }
 
+  function restart(){
+    window.location.reload();
+  }
+
   const startButton = document.getElementById('start');
   startButton.addEventListener('click', start);
 
+  const restartButton = document.getElementById('restart');
+  restartButton.addEventListener('click', restart);
 
 
 });

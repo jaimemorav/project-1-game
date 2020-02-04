@@ -84,6 +84,8 @@ class Game {
     gameOverTitle.classList.remove("disabled");
     const gameOverText = document.getElementById('gameOverText');
     gameOverText.classList.remove("disabled");
+    const restartButton = document.getElementById('restart');
+    restartButton.classList.remove("disabled");
   }
 
   _collidesPlayerWithPlatform() {
@@ -105,10 +107,14 @@ class Game {
   }
 
   _moveMap(){
-    if (this._collidesPlayerWithPlatform && this.player.position.column < 200 && this.player.falling) {
-      this.platform.position.forEach(element => element.column += 1);
-      this.player.position.column += 1;
-    }
+    // if (this.score > 500) {
+    //   this.platform.position.forEach(element => element.column += 0.5);
+    //   this.player.position.column += 0.5;
+    // }
+    // if (this.score > 250) {
+    //   this.platform.position.forEach(element => element.column += 1);
+    //   this.player.position.column += 0.5;
+    // }
       this.platform.position.forEach(element => element.column += 0.5);
       this.player.position.column += 0.5;
   }
@@ -128,36 +134,34 @@ class Game {
       let pauseText = document.getElementById('pauseTitle');
       pauseText.classList.remove("disabled");
       this.stop = true;
-    } else{
+    } else {
       let pauseText = document.getElementById('pauseTitle');
       pauseText.classList.add("disabled");
       this.interval = window.requestAnimationFrame(this._update.bind(this));
       this.stop = false;
     }
-    return stop;
   }
 
   _drawBackground(){
-    // let posY = 0;
-    // setInterval(() => {
-    //   ctx.drawImage(this.background, 0, posY )
-    //   posY += 1;
-    // }, 300);
+    let posY = 0;
+    posY += 1;
+    this.ctx.drawImage(this.background, 0, posY, 500, 1000 );
   }
 
+  
 
 
   _update(){
     this._clean(); // Clean all the Canvas
-    // this._drawBackground();
+    this._drawBackground(); // Draw the background of the canvas
     this._collidesPlayerWithPlatform(); //Checks if player collides with any platform
     this._drawPlatforms(); //Draw the platforms
     this._drawPlayer(); // Draw again the Player
-    this._gameOver();
-    this._moveMap();
-    this._erasePlatforms();
-    this._controlKeys();
-    this._printScore();
+    this._gameOver(); //Checks if the player die
+    this._moveMap(); //Move the platforms from the top to the bottom
+    this._erasePlatforms(); //Checks if the platforms are in position column:501, erase them and create new in position column : 0
+    this._controlKeys();// The control of the player
+    this._printScore();//Prints the score
     if (!!this.interval) {
       this.interval = window.requestAnimationFrame(this._update.bind(this));//Loop of _update() with a bind because this references to window
     }
@@ -171,7 +175,13 @@ class Game {
     this._drawPlayer();
     this.player._jump();
     this._controlKeys();
+    this._drawBackground();
 
     this.interval = window.requestAnimationFrame(this._update.bind(this));
+  }
+
+  restart(){
+    clearInterval(this.interval);
+    this.start();
   }
 }
