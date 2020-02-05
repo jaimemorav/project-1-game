@@ -36,6 +36,8 @@ body {
 
 .game-screen {
   margin: 0 auto;
+  border-radius: 5%;
+  border: 5px solid #fff;
 }
 .disabled {
   display: none;
