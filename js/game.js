@@ -11,34 +11,30 @@ class Game {
     this.background.src = './images/background.png';
     this.stop = false;
     this.backgroundInterval = undefined;
-    this.posY = 0;
+    this.posY = -1500;
     this.musicGameOver = new Audio();
     this.musicGameOver.src = './music/game-over.wav';
     this.playGameOver = 0;
   }
   
     _drawBackground(){
-      this.ctx.drawImage(this.background, 0, this.posY, 500, 1000 );
+      this.ctx.drawImage(this.background, 0, this.posY, 500, 2000 );
       this._moveBackground();
     }
 
     _moveBackground(){
-      if(this.posY < -gameScreen.height){
-        this.posY = 0;
+      if(this.posY > -gameScreen.height){
+        this.posY = -1500;
       } else {
-        this.posY -= 0.5;
+        this.posY += 0.2;
       }
     }
 
-    _updateFrame(){
-      ctx.clearRect(this.player.position.row, this.player.position.column, this.player.widthFrame, this.player.spriteHeight);
-      this.player.currentFrame = ++this.player.currentFrame % this.player.frameCount;
-      this.player.position.row = this.player.currentFrame * this.player.widthFrame;
-    }
-
     _drawPlayer(){
-    ctx.drawImage(this.player.playerImage, this.player.position.row, this.player.position.column, this.player.body.width, this.player.body.height);
+        ctx.drawImage(this.player.playerImage, this.player.position.row, this.player.position.column, this.player.body.width, this.player.body.height);
   }
+
+
   
   _generatePlatforms(){
       for (let i = 0; i < this.platform.position.length; i++) {
@@ -57,6 +53,12 @@ class Game {
       score.innerHTML = this.score;
     }
   
+    _win(){
+      if(this.score >= 150){
+        this.player.falling = false;
+      }
+    }
+
   _clean(){
     ctx.clearRect(0, 0, gameScreen.width, gameScreen.height);
   }
@@ -137,16 +139,13 @@ class Game {
   }
 
   _moveMap(){
-    // if (this.score > 500) {
-    //   this.platform.position.forEach(element => element.column += 2);
-    //   this.player.position.column += 2;
-    // }
-    // else if (this.score > 250) {
-    //   this.platform.position.forEach(element => element.column += 1);
-    //   this.player.position.column += 1;
-    // }
-      this.platform.position.forEach(element => element.column += 0.5);
-      this.player.position.column += 0.5;
+    if (this.score > 250) {
+      this.platform.position.forEach(element => element.column += 1);
+      this.player.position.column += 1;
+    } else{
+      this.platform.position.forEach(element => element.column += 0.6);
+      this.player.position.column += 0.6;
+    }
   }
 
   _erasePlatforms(){
@@ -156,11 +155,11 @@ class Game {
         this.platform.position.splice(i, 1, {row: Math.round(Math.random() * gameScreen.height), column: 0});
       }
     }
-    if(this.score > 250 && this.platform.position.length === 19 ){
+    if(this.score > 250 && this.platform.position.length === 17 ){
       this.platform.position.pop();
-    } else if (this.score > 500 && this.platform.position.length === 18){
+    } else if (this.score > 500 && this.platform.position.length === 16){
       this.platform.position.pop();
-    } else if (this.score > 700 && this.platform.position.length === 17) {
+    } else if (this.score > 700 && this.platform.position.length === 15) {
       this.platform.position.pop();
     }
   }
@@ -170,11 +169,13 @@ class Game {
       window.cancelAnimationFrame(this.interval);
       let pauseText = document.getElementById('pauseTitle');
       pauseText.classList.remove("disabled");
+      clearInterval(this.player.intervalJump);
       this.stop = true;
     } else {
       let pauseText = document.getElementById('pauseTitle');
       pauseText.classList.add("disabled");
       this.interval = window.requestAnimationFrame(this._update.bind(this));
+      this.player._jump();
       this.stop = false;
     }
   }
@@ -192,6 +193,7 @@ class Game {
     this._erasePlatforms(); //Checks if the platforms are in position column:501, erase them and create new in position column : 0
     this._controlKeys();// The control of the player
     this._printScore();//Prints the score
+    this._win();
     if (!!this.interval) {
       this.interval = window.requestAnimationFrame(this._update.bind(this));//Loop of _update() with a bind because this references to window
     }
@@ -206,7 +208,6 @@ class Game {
     this.player._jump();
     this._controlKeys();
     this._drawBackground();
-
     this.interval = window.requestAnimationFrame(this._update.bind(this));
   }
 

@@ -7,17 +7,14 @@ class Player {
     this.falling = true;
     this.speed = 1;
     this.realSpeed = 0; 
-    this.distanceJump = 85;
+    this.distanceJump = 75;
     this.positionBeforeJump = 400;
     this.invertalJump = undefined;
+    this.positionStop = {row: 0, column: 0};
     this.playerImage = new Image();
     this.playerImage.src = './images/perry.png';
-    this.spriteWidth = 86;
-    this.spriteHeight = 40;
-    this.spriteColumn = 2;
-    this.widthFrame = this.spriteWidth / this.spriteHeight;
-    this.currentFrame = 0;
-    this.frameCount = 2;
+    this.playerImageJump = new Image();
+    this.playerImageJump.src = './images/perry-jump.png';
     this.soundBounce = new Audio();
     this.soundBounce.src = './music/bounce.wav';
   }
@@ -44,7 +41,7 @@ class Player {
   }
 
   _jump() {
-    this.invertalJump = setInterval(() => {
+    this.intervalJump = setInterval(() => {
       if (game._collidesPlayerWithPlatform()) {
         this.falling = false;
         this.position.column -= this.speed;

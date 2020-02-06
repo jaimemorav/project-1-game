@@ -19,8 +19,6 @@ class Platform {
       { row: 8, column: 470 },
       { row: 8, column: 420 },
       { row: 8, column: 400 },
-      { row: 8, column: 50 },
-      { row: 8, column: 100 },
     ];
     this.platformImage = new Image();
     this.platformImage.src = './images/platform.png';
