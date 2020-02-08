@@ -17,7 +17,7 @@ class Platform {
       { row: 8, column: 410 },
       { row: 8, column: 440 },
       { row: 8, column: 470 },
-      { row: 8, column: 420 },
+      { row: 8, column: 415 },
       { row: 8, column: 400 },
     ];
     this.platformImage = new Image();

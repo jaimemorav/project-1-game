@@ -22,7 +22,7 @@ class Player {
   _move() {
     switch (this.direction) {
       case 'right':
-        this.position.row = (this.position.row + 1.5) % 500;
+        this.position.row = (this.position.row + 1.5) % 500  ;
         break;
       case 'left':
         this.position.row = ((this.position.row - 1.5) + 500) % 500;

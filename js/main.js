@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   game = new Game({
     ctx: ctx,
-    player: new Player(gameScreen.width, gameScreen.height),
-    platform: new Platform(gameScreen.width, gameScreen.height),
+    player: new Player(),
+    platform: new Platform(),
   }, this._printGameOver);
 
   function start() {

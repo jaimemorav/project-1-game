@@ -11,20 +11,20 @@ class Game {
     this.background.src = './images/background.png';
     this.stop = false;
     this.backgroundInterval = undefined;
-    this.posY = -1500;
+    this.posY = -500;
     this.musicGameOver = new Audio();
     this.musicGameOver.src = './music/game-over.wav';
     this.playGameOver = 0;
   }
   
     _drawBackground(){
-      this.ctx.drawImage(this.background, 0, this.posY, 500, 2000 );
+      this.ctx.drawImage(this.background, 0, this.posY, 500, 1000 );
       this._moveBackground();
     }
 
     _moveBackground(){
-      if(this.posY > -gameScreen.height){
-        this.posY = -1500;
+      if(this.posY > 0){
+        this.posY = -500;
       } else {
         this.posY += 0.2;
       }
@@ -52,12 +52,7 @@ class Game {
       let score = document.getElementById('realScore');
       score.innerHTML = this.score;
     }
-  
-    _win(){
-      if(this.score >= 150){
-        this.player.falling = false;
-      }
-    }
+
 
   _clean(){
     ctx.clearRect(0, 0, gameScreen.width, gameScreen.height);
@@ -180,7 +175,15 @@ class Game {
     }
   }
 
-
+  _showPoints(){
+    if(this.score % 100 === 0 && this.score != 0){
+      const pointsText = document.getElementById('pointsText');
+      pointsText.classList.remove("disabled");
+    } else{
+      const pointsText = document.getElementById('pointsText');
+      pointsText.classList.add("disabled");
+    }
+  }
 
   _update(){
     this._clean(); // Clean all the Canvas
@@ -193,7 +196,7 @@ class Game {
     this._erasePlatforms(); //Checks if the platforms are in position column:501, erase them and create new in position column : 0
     this._controlKeys();// The control of the player
     this._printScore();//Prints the score
-    this._win();
+    this._showPoints();
     if (!!this.interval) {
       this.interval = window.requestAnimationFrame(this._update.bind(this));//Loop of _update() with a bind because this references to window
     }
